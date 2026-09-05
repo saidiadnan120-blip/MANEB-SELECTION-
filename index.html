@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Malawi Student Placement</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    background:
+    linear-gradient(135deg,
+    #f5f7fa,
+    #e8f5ee);
+
+    color: #17202a;
+}
+
+header {
+    background:
+    linear-gradient(135deg,
+    #111827,
+    #00843d);
+
+    color: white;
+    padding: 20px;
+    text-align: center;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.2);
+}
+
+header h2 {
+    font-size: 22px;
+}
+
+header p {
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+.hero {
+    text-align: center;
+    padding: 45px 20px 25px;
+}
+
+.badge {
+    display: inline-block;
+
+    background: #dff5e8;
+    color: #00843d;
+
+    padding: 8px 15px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #00843d;
+}
+
+.hero p {
+    color: #64748b;
+
+    max-width: 600px;
+
+    margin: auto;
+
+    line-height: 1.6;
+}
+
+.search-box {
+    max-width: 700px;
+
+    margin: 20px auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.12);
+}
+
+.search-box label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 16px;
+
+    border: 2px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    margin-bottom: 12px;
+}
+
+.search-box input:focus {
+    border-color: #00843d;
+}
+
+button {
+    border: none;
+
+    padding: 15px 20px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.check {
+    width: 100%;
+
+    background: #00843d;
+
+    color: white;
+}
+
+.reset {
+    width: 100%;
+
+    background: #edf0f3;
+
+    margin-top: 10px;
+}
+
+#result {
+    display: none;
+
+    max-width: 900px;
+
+    margin: 30px auto;
+
+    padding: 20px;
+}
+
+.success {
+    background:
+    linear-gradient(135deg,
+    #00843d,
+    #005c2b);
+
+    color: white;
+
+    padding: 25px;
+
+    border-radius:
+    20px 20px 0 0;
+}
+
+.success h2 {
+    margin-bottom: 8px;
+}
+
+.result-content {
+    background: white;
+
+    padding: 25px;
+
+    border-radius:
+    0 0 20px 20px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.12);
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.info {
+    background: #f8fafc;
+
+    padding: 17px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+}
+
+.info small {
+    display: block;
+
+    color: #64748b;
+
+    margin-bottom: 5px;
+}
+
+.selection {
+    background: #f1fff6;
+
+    border: 2px solid #d9f2e2;
+
+    padding: 22px;
+
+    border-radius: 17px;
+}
+
+.selection h3 {
+    color: #00843d;
+
+    margin-bottom: 15px;
+}
+
+.school {
+    font-size: 28px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+.details {
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.detail {
+    background: white;
+
+    padding: 14px;
+
+    border-radius: 10px;
+}
+
+.detail small {
+    display: block;
+
+    color: #64748b;
+
+    margin-bottom: 5px;
+}
+
+.actions {
+    margin-top: 20px;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.print {
+    background: #111827;
+
+    color: white;
+
+    flex: 1;
+}
+
+.another {
+    background: #dff5e8;
+
+    color: #00843d;
+
+    flex: 1;
+}
+
+#error {
+    display: none;
+
+    max-width: 700px;
+
+    margin: 25px auto;
+
+    background: #fff1f2;
+
+    color: #be123c;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+@media(max-width:600px) {
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .grid,
+    .details {
+        grid-template-columns: 1fr;
+    }
+
+    .school {
+        font-size: 23px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .search-box {
+        margin: 20px;
+    }
+}
+
+@media print {
+
+    header,
+    .hero,
+    .search-box,
+    footer,
+    .actions {
+        display: none;
+    }
+
+    #result {
+        display: block !important;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>🎓 Malawi Student Placement</h2>
+
+<p>Secondary School Selection Portal</p>
+
+</header>
+
+<section class="hero">
+
+<div class="badge">
+2026 / 2027 ACADEMIC YEAR
+</div>
+
+<h1>
+Check Your <span>School Selection</span>
+</h1>
+
+<p>
+Enter your examination number to view
+your secondary school placement information.
+</p>
+
+</section>
+
+<div class="search-box">
+
+<label>
+Examination Number
+</label>
+
+<input
+id="examNumber"
+type="text"
+placeholder="Example: 001 20 039 154">
+
+<button
+class="check"
+onclick="searchResult()">
+
+🔎 CHECK SELECTION
+
+</button>
+
+<button
+class="reset"
+onclick="resetPage()">
+
+RESET
+
+</button>
+
+</div>
+
+<div id="error">
+
+<h3>❌ Result Not Found</h3>
+
+<br>
+
+<p>
+No placement record was found for this
+examination number.
+</p>
+
+</div>
+
+<section id="result">
+
+<div class="success">
+
+<h2>✅ Selection Confirmed</h2>
+
+<p>
+Your placement information has been found.
+</p>
+
+</div>
+
+<div class="result-content">
+
+<div class="grid">
+
+<div class="info">
+<small>Examination Number</small>
+<strong id="exam"></strong>
+</div>
+
+<div class="info">
+<small>Student Name</small>
+<strong id="name"></strong>
+</div>
+
+<div class="info">
+<small>Age</small>
+<strong id="age"></strong>
+</div>
+
+<div class="info">
+<small>Gender</small>
+<strong id="gender"></strong>
+</div>
+
+</div>
+
+<div class="selection">
+
+<h3>
+🏫 SECONDARY SCHOOL SELECTION
+</h3>
+
+<div class="school" id="school"></div>
+
+<div class="details">
+
+<div class="detail">
+<small>School Category</small>
+<strong id="category"></strong>
+</div>
+
+<div class="detail">
+<small>Education District</small>
+<strong id="district"></strong>
+</div>
+
+<div class="detail">
+<small>Education Division</small>
+<strong id="division"></strong>
+</div>
+
+<div class="detail">
+<small>Process Type</small>
+<strong id="process"></strong>
+</div>
+
+<div class="detail">
+<small>Status</small>
+<strong id="status"></strong>
+</div>
+
+<div class="detail">
+<small>Academic Year</small>
+<strong id="year"></strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="print"
+onclick="window.print()">
+
+🖨️ PRINT RESULT
+
+</button>
+
+<button
+class="another"
+onclick="resetPage()">
+
+🔄 CHECK ANOTHER
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+Student Placement Portal
+</p>
+
+<br>
+
+<p>
+Demo website — not an official government portal.
+</p>
+
+</footer>
+
+<script>
+
+const students = {
+
+"00120039154": {
+
+name: "JOSSAM HENRY",
+
+age: "15",
+
+gender: "MALE",
+
+school: "LIWONDE",
+
+category:
+"DISTRICT DAY SECONDARY SCHOOLS",
+
+district: "MACHINGA",
+
+division: "SOUTH EAST",
+
+process: "REGULAR",
+
+status: "COMMUTER",
+
+year: "2026-2027"
+
+},
+
+"123456789": {
+
+name: "CHISOMO PHIRI",
+
+age: "15",
+
+gender: "FEMALE",
+
+school:
+"ZOMBA CATHOLIC SECONDARY SCHOOL",
+
+category:
+"DISTRICT SECONDARY SCHOOL",
+
+district: "ZOMBA",
+
+division: "SOUTH EAST",
+
+process: "REGULAR",
+
+status: "BOARDING",
+
+year: "2026-2027"
+
+}
+
+};
+
+function searchResult() {
+
+let input =
+document.getElementById("examNumber").value;
+
+let number =
+input.replace(/\s/g, "");
+
+let student =
+students[number];
+
+document.getElementById("result")
+.style.display = "none";
+
+document.getElementById("error")
+.style.display = "none";
+
+if (!student) {
+
+document.getElementById("error")
+.style.display = "block";
+
+return;
+
+}
+
+document.getElementById("exam")
+.innerHTML = input;
+
+document.getElementById("name")
+.innerHTML = student.name;
+
+document.getElementById("age")
+.innerHTML = student.age;
+
+document.getElementById("gender")
+.innerHTML = student.gender;
+
+document.getElementById("school")
+.innerHTML = student.school;
+
+document.getElementById("category")
+.innerHTML = student.category;
+
+document.getElementById("district")
+.innerHTML = student.district;
+
+document.getElementById("division")
+.innerHTML = student.division;
+
+document.getElementById("process")
+.innerHTML = student.process;
+
+document.getElementById("status")
+.innerHTML = student.status;
+
+document.getElementById("year")
+.innerHTML = student.year;
+
+document.getElementById("result")
+.style.display = "block";
+
+document.getElementById("result")
+.scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+function resetPage() {
+
+document.getElementById("examNumber")
+.value = "";
+
+document.getElementById("result")
+.style.display = "none";
+
+document.getElementById("error")
+.style.display = "none";
+
+window.scrollTo({
+top: 0,
+behavior: "smooth"
+});
+
+}
+
+document
+.getElementById("examNumber")
+.addEventListener(
+"keydown",
+function(event) {
+
+if (event.key === "Enter") {
+
+searchResult();
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
