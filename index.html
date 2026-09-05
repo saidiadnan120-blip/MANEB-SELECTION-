@@ -92,25 +92,22 @@ position:relative;
 
 /* MALAWI FLAG IMAGE */
 
-.malawi-flag{
+.flag {
+    width: 150px;
+    height: 95px;
+    margin: auto;
+    position: relative;
+    border: 3px solid white;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #000;
+}
 
-display:block;
-
-width:130px;
-
-height:85px;
-
-object-fit:cover;
-
-margin:0 auto 12px;
-
-border-radius:5px;
-
-border:2px solid white;
-
-box-shadow:
-0 8px 25px rgba(0,0,0,0.3);
-
+.flag img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 /* HEADER TEXT */
@@ -810,9 +807,9 @@ onclick="toggleDark()">
 </div>
 
 <img
-src="malawi-flag.jpg"
-class="malawi-flag"
-alt="Malawi Flag">
+<div class="flag">
+    <img src="malawi-flag.png" alt="Malawi Flag">
+</div>
 
 <div class="header-title">
 
