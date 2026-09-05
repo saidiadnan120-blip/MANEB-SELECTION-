@@ -90,49 +90,26 @@ position:relative;
 
 }
 
-/* MALAWI FLAG */
+/* MALAWI FLAG IMAGE */
 
-.flag{
+.malawi-flag{
 
-width:70px;
+display:block;
 
-height:45px;
+width:130px;
 
-margin:auto;
+height:85px;
 
-position:relative;
+object-fit:cover;
 
-background:
+margin:0 auto 12px;
 
-linear-gradient(
-to bottom,
-#111 0%,
-#111 33%,
-#ce1126 33%,
-#ce1126 66%,
-#339e35 66%,
-#339e35 100%
-);
+border-radius:5px;
 
 border:2px solid white;
 
-}
-
-.sun{
-
-position:absolute;
-
-top:2px;
-
-left:18px;
-
-width:34px;
-
-height:18px;
-
-border-top:4px solid #d90000;
-
-border-radius:50%;
+box-shadow:
+0 8px 25px rgba(0,0,0,0.3);
 
 }
 
@@ -832,11 +809,10 @@ onclick="toggleDark()">
 
 </div>
 
-<div class="flag">
-
-<div class="sun"></div>
-
-</div>
+<img
+src="malawi-flag.jpg"
+class="malawi-flag"
+alt="Malawi Flag">
 
 <div class="header-title">
 
