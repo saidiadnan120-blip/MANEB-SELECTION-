@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Admin Dashboard</title>
+
+<style>
+
+*{
+
+box-sizing:border-box;
+margin:0;
+padding:0;
+
+}
+
+body{
+
+font-family:Arial,sans-serif;
+
+background:#f1f5f9;
+
+color:#17202a;
+
+}
+
+header{
+
+background:
+linear-gradient(
+135deg,
+#111827,
+#00843d
+);
+
+color:white;
+
+padding:25px;
+
+text-align:center;
+
+}
+
+.container{
+
+max-width:1000px;
+
+margin:30px auto;
+
+padding:20px;
+
+}
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+margin-bottom:20px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.1);
+
+}
+
+h2{
+
+margin-bottom:15px;
+
+}
+
+input{
+
+width:100%;
+
+padding:14px;
+
+margin:7px 0;
+
+border:1px solid #d1d5db;
+
+border-radius:10px;
+
+font-size:15px;
+
+}
+
+button{
+
+padding:13px 18px;
+
+border:none;
+
+border-radius:10px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+.login{
+
+background:#00843d;
+
+color:white;
+
+width:100%;
+
+}
+
+.add{
+
+background:#00843d;
+
+color:white;
+
+margin-top:10px;
+
+width:100%;
+
+}
+
+.delete{
+
+background:#fee2e2;
+
+color:#b91c1c;
+
+}
+
+#dashboard{
+
+display:none;
+
+}
+
+.student{
+
+border:1px solid #e2e8f0;
+
+padding:18px;
+
+border-radius:15px;
+
+margin-top:12px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.student-info{
+
+flex:1;
+
+}
+
+.student-info strong{
+
+display:block;
+
+margin-bottom:5px;
+
+}
+
+.student-info small{
+
+color:#64748b;
+
+}
+
+.logout{
+
+background:#111827;
+
+color:white;
+
+}
+
+.home{
+
+display:inline-block;
+
+margin-top:10px;
+
+color:#00843d;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+@media(max-width:600px){
+
+.student{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🔐 Admin Dashboard</h1>
+
+<p>Student Placement Management</p>
+
+</header>
+
+
+<div class="container">
+
+
+<div id="loginCard" class="card">
+
+<h2>Administrator Login</h2>
+
+<p>
+
+Enter the administrator PIN to continue.
+
+</p>
+
+<br>
+
+<input
+
+id="pin"
+
+type="password"
+
+placeholder="Admin PIN"
+
+>
+
+<button
+
+class="login"
+
+onclick="login()">
+
+LOGIN
+
+</button>
+
+</div>
+
+
+<div id="dashboard">
+
+
+<div class="card">
+
+<h2>➕ Add Student</h2>
+
+<p>
+
+Add a placement record to the local
+demonstration database.
+
+</p>
+
+<br>
+
+<input
+id="exam"
+placeholder="Examination Number">
+
+<input
+id="name"
+placeholder="Student Name">
+
+<input
+id="age"
+placeholder="Age">
+
+<input
+id="gender"
+placeholder="Gender">
+
+<input
+id="school"
+placeholder="Secondary School">
+
+<input
+id="category"
+placeholder="School Category">
+
+<input
+id="district"
+placeholder="Education District">
+
+<input
+id="division"
+placeholder="Education Division">
+
+<input
+id="process"
+placeholder="Process Type">
+
+<input
+id="status"
+placeholder="Status">
+
+<input
+id="year"
+placeholder="Academic Year">
+
+
+<button
+class="add"
+onclick="addStudent()">
+
+➕ ADD STUDENT
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📊 Student Records</h2>
+
+<div id="records"></div>
+
+</div>
+
+
+<div class="card">
+
+<button
+class="logout"
+onclick="logout()">
+
+LOGOUT
+
+</button>
+
+<br>
+
+<a
+class="home"
+href="index.html">
+
+← Back to Student Search
+
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/*
+DEMO ADMIN PIN
+
+Change this number if you want.
+
+*/
+
+const ADMIN_PIN="2026";
+
+
+function login(){
+
+let pin=
+document.getElementById("pin")
+.value;
+
+if(pin===ADMIN_PIN){
+
+document.getElementById(
+"loginCard"
+).style.display="none";
+
+document.getElementById(
+"dashboard"
+).style.display="block";
+
+showStudents();
+
+}else{
+
+alert("Incorrect administrator PIN.");
+
+}
+
+}
+
+
+function addStudent(){
+
+let exam=
+document.getElementById("exam")
+.value.trim();
+
+let number=
+exam.replace(/\s/g,"");
+
+if(number===""){
+
+alert(
+"Please enter an examination number."
+);
+
+return;
+
+}
+
+
+let students=
+JSON.parse(
+localStorage.getItem("students")
+) || {};
+
+
+students[number]={
+
+name:
+document.getElementById("name").value,
+
+age:
+document.getElementById("age").value,
+
+gender:
+document.getElementById("gender").value,
+
+school:
+document.getElementById("school").value,
+
+category:
+document.getElementById("category").value,
+
+district:
+document.getElementById("district").value,
+
+division:
+document.getElementById("division").value,
+
+process:
+document.getElementById("process").value,
+
+status:
+document.getElementById("status").value,
+
+year:
+document.getElementById("year").value
+
+};
+
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+
+alert("Student added successfully!");
+
+
+document.querySelectorAll(
+"#dashboard input"
+).forEach(function(input){
+
+input.value="";
+
+});
+
+
+showStudents();
+
+}
+
+
+function showStudents(){
+
+let students=
+JSON.parse(
+localStorage.getItem("students")
+) || {};
+
+
+let box=
+document.getElementById("records");
+
+
+box.innerHTML="";
+
+
+let keys=
+Object.keys(students);
+
+
+if(keys.length===0){
+
+box.innerHTML=
+"<p>No student records.</p>";
+
+return;
+
+}
+
+
+keys.forEach(function(key){
+
+let s=students[key];
+
+
+let div=
+document.createElement("div");
+
+div.className="student";
+
+
+div.innerHTML=
+
+"<div class='student-info'>"+
+
+"<strong>"+
+s.name+
+"</strong>"+
+
+"<small>"+
+"Exam: "+key+
+" | School: "+s.school+
+"</small>"+
+
+"</div>"+
+
+"<button class='delete' "+
+"onclick=\"deleteStudent('"+
+key+
+"')\">"+
+"DELETE"+
+"</button>";
+
+
+box.appendChild(div);
+
+});
+
+}
+
+
+function deleteStudent(number){
+
+if(!confirm(
+"Delete this student record?"
+)){
+
+return;
+
+}
+
+
+let students=
+JSON.parse(
+localStorage.getItem("students")
+) || {};
+
+
+delete students[number];
+
+
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+
+showStudents();
+
+}
+
+
+function logout(){
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+
+</html>
+
