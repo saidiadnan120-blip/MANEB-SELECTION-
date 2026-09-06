@@ -33,6 +33,50 @@ min-height:100vh;
 
 transition:.3s;
 
+position:relative;
+
+}
+
+/* MANEB LOGO BACKGROUND */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+width:600px;
+
+height:600px;
+
+background-image:url("maneb-light.png");
+
+background-repeat:no-repeat;
+
+background-position:center;
+
+background-size:contain;
+
+opacity:0.08;
+
+z-index:-1;
+
+pointer-events:none;
+
+}
+
+/* DARK MODE MANEB LOGO */
+
+body.dark::before{
+
+background-image:url("maneb-dark.png");
+
 }
 
 /* DARK MODE */
@@ -42,6 +86,8 @@ body.dark{
 background:#101827;
 
 color:#f1f5f9;
+
+}
 
 }
 
