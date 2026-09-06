@@ -79,22 +79,14 @@ background-image:url("maneb-dark.png");
 
 }
 
-/* DARK MODE */
-
-body.dark{
-
-background:#101827;
-
-color:#f1f5f9;
-
-}
-
-}
+/* DARK MODE - FIX ALL CONTENT */
 
 body.dark .card,
 body.dark .search-card,
 body.dark .result-card,
-body.dark .info{
+body.dark .info,
+body.dark .detail,
+body.dark .school-box{
 
 background:#1e293b;
 
@@ -104,13 +96,95 @@ border-color:#334155;
 
 }
 
+
+/* DARK MODE TEXT */
+
+body.dark .search-subtitle,
+body.dark .info small,
+body.dark .detail small{
+
+color:#94a3b8;
+
+}
+
+
+/* DARK MODE SCHOOL SECTION */
+
+body.dark .school-box{
+
+background:#172f25;
+
+border-color:#166534;
+
+}
+
+
+/* DARK MODE SCHOOL TITLE */
+
+body.dark .school-label{
+
+color:#4ade80;
+
+}
+
+
+/* DARK MODE DETAILS */
+
+body.dark .detail{
+
+background:#0f172a;
+
+color:#f1f5f9;
+
+border-color:#334155;
+
+}
+
+
+/* DARK MODE RESET BUTTON */
+
+body.dark .reset-btn{
+
+background:#334155;
+
+color:#f1f5f9;
+
+}
+
+
+/* DARK MODE HERO */
+
+body.dark .hero p{
+
+color:#cbd5e1;
+
+}
+
+
+/* DARK MODE INPUT */
+
 body.dark input{
 
 background:#0f172a;
 
-color:white;
+color:#f1f5f9;
 
 border-color:#475569;
+
+}
+
+body.dark input::placeholder{
+
+color:#94a3b8;
+
+}
+
+
+/* DARK MODE FOOTER */
+
+body.dark footer{
+
+color:#94a3b8;
 
 }
 
